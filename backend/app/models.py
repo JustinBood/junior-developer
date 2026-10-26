@@ -5,6 +5,7 @@ class Source(BaseModel):
     id: str
     title: str
     source: str
+    number: int | None = None
 
 
 class Data(BaseModel):
