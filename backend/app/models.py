@@ -6,6 +6,7 @@ class Source(BaseModel):
     title: str
     source: str
     number: int | None = None
+    favicon: str | None = None
 
 
 class Data(BaseModel):

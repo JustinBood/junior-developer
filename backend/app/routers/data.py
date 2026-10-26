@@ -8,6 +8,7 @@ from app.dependencies import get_model
 from app.models import Data
 from app.redaction import redact
 from app.citations import link_citations
+from app.favicons import favicon_url
 
 router = APIRouter(tags=["data"])
 
@@ -21,4 +22,6 @@ def get_data(model: GLiNER2 = Depends(get_model)) -> list[Data]:
     for item in data:
         item.question = redact(item.question, model)
         item.content = link_citations(item.content, item.sources)
+        for source in item.sources:
+            source.favicon = favicon_url(source.source)
     return data
